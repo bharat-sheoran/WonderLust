@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WonderLust</title>
+</head>
+<body>
+    <h3>Edit Listing</h3>
+    <form method="post" action="/listing/<%=listing._id%>?_method=PUT">
+        <label for="title">Enter Title:</label>
+        <input type="text" name="title" id="title" placeholder="Enter Title" value="<%=listing.title%>">
+        <br><br>
+        <label for="description">Enter Description:</label>
+        <textarea type="text" name="description" id="description" placeholder="Enter Description"><%=listing.description%></textarea>
+        <br><br>
+        <label for="image">Enter Image URL:</label>
+        <input type="text" name="image" id="image" placeholder="Enter Image URL/Link" value="<%=listing.image%>">
+        <br><br>
+        <label for="price">Enter Price:</label>
+        <input type="number" name="price" id="price" placeholder="Enter Price" value="<%=listing.price%>">
+        <br><br>
+        <label for="location">Enter Location:</label>
+        <input type="text" name="location" id="location" placeholder="Enter Location" value="<%=listing.location%>">
+        <br><br>
+        <label for="country">Enter Country:</label>
+        <input type="text" name="country" id="country" placeholder="Enter Country" value="<%=listing.country%>">
+        <br><br>
+        <button type="submit">Edit</button>
+    </form>
+</body>
+</html>

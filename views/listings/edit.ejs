@@ -1,31 +1,37 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WonderLust</title>
-</head>
+<%layout("layouts/boilerplate.ejs")%>
 <body>
-    <h3>Edit Listing</h3>
-    <form method="post" action="/listing/<%=listing._id%>?_method=PUT">
-        <label for="title">Enter Title:</label>
-        <input type="text" name="title" id="title" placeholder="Enter Title" value="<%=listing.title%>">
-        <br><br>
-        <label for="description">Enter Description:</label>
-        <textarea type="text" name="description" id="description" placeholder="Enter Description"><%=listing.description%></textarea>
-        <br><br>
-        <label for="image">Enter Image URL:</label>
-        <input type="text" name="image" id="image" placeholder="Enter Image URL/Link" value="<%=listing.image%>">
-        <br><br>
-        <label for="price">Enter Price:</label>
-        <input type="number" name="price" id="price" placeholder="Enter Price" value="<%=listing.price%>">
-        <br><br>
-        <label for="location">Enter Location:</label>
-        <input type="text" name="location" id="location" placeholder="Enter Location" value="<%=listing.location%>">
-        <br><br>
-        <label for="country">Enter Country:</label>
-        <input type="text" name="country" id="country" placeholder="Enter Country" value="<%=listing.country%>">
-        <br><br>
-        <button type="submit">Edit</button>
-    </form>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h3>Edit Listing</h3>
+            <form method="post" action="/listing/<%=listing._id%>?_method=PUT">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Enter Title:</label>
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title" value="<%=listing.title%>">
+                </div>   
+                <div class="mb-3">
+                    <label class="form-label" for="description">Enter Description:</label>
+                    <textarea class="form-control" type="text" name="description" id="description" placeholder="Enter Description"><%=listing.description%></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Enter Image URL:</label>
+                    <input class="form-control" type="text" name="image" id="image" placeholder="Enter Image URL/Link" value="<%=listing.image%>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Enter Price:</label>
+                    <input class="form-control" type="number" name="price" id="price" placeholder="Enter Price" value="<%=listing.price%>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Enter Location:</label>
+                    <input class="form-control" type="text" name="location" id="location" placeholder="Enter Location" value="<%=listing.location%>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="country">Enter Country:</label>
+                    <input class="form-control" type="text" name="country" id="country" placeholder="Enter Country" value="<%=listing.country%>">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-dark" type="submit">Edit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
-</html>

@@ -6,12 +6,14 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const ejs = require("ejs");
 const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
 
 app.set("view engine" , "ejs");
 app.set("views" , path.join(__dirname , "views"));
 app.use(express.static(path.join(__dirname , "/public")));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.engine("ejs" , ejsMate);
 
 async function main(){
     await mongoose.connect("mongodb://127.0.0.1:27017/wonderlust");

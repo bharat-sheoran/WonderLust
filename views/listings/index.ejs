@@ -1,18 +1,18 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WonderLust</title>
-</head>
+<%layout("layouts/boilerplate.ejs")%>
 <body>
-    <h2>Here are all listings</h2>
-    <form action="/listing/new" method="get">
-        <button type="submit">New</button>
-    </form>
-    <ul>
+    <h2>All listings</h2>
+    <div class="card-index">
         <%for(let listing of allListings){%>
-            <li><a href="/listing/<%=listing._id%>"><%=listing.title%></a></li>
+            <a href="/listing/<%=listing._id%>">
+                <div class="card">
+                    <img src="<%=listing.image%>>" class="card-img-top" alt="..." style="height: 20rem;">
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <div class="card-title"><a><%=listing.title%></a></div>
+                        <p class="card-text fw-bold fs-5">&#8377;<%=listing.price.toLocaleString("en-IN")%>/night</p>
+                    </div>
+                </div>
+            </a>
         <%}%>
-    </ul>
+    </div>
 </body>
-</html>

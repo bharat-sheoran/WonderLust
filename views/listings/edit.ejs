@@ -5,31 +5,31 @@
             <h3>Edit Listing</h3>
             <form method="post" action="/listing/<%=listing._id%>?_method=PUT">
                 <div class="mb-3">
-                    <label class="form-label" for="title">Enter Title:</label>
+                    <label class="form-label" for="title">Title:</label>
                     <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title" value="<%=listing.title%>">
                 </div>   
                 <div class="mb-3">
-                    <label class="form-label" for="description">Enter Description:</label>
+                    <label class="form-label" for="description">Description:</label>
                     <textarea class="form-control" type="text" name="description" id="description" placeholder="Enter Description"><%=listing.description%></textarea>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="image">Enter Image URL:</label>
+                    <label class="form-label" for="image">Image URL:</label>
                     <input class="form-control" type="text" name="image" id="image" placeholder="Enter Image URL/Link" value="<%=listing.image%>">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="price">Enter Price:</label>
+                    <label class="form-label" for="price">Price:</label>
                     <input class="form-control" type="number" name="price" id="price" placeholder="Enter Price" value="<%=listing.price%>">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="location">Enter Location:</label>
+                    <label class="form-label" for="location">Location:</label>
                     <input class="form-control" type="text" name="location" id="location" placeholder="Enter Location" value="<%=listing.location%>">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="country">Enter Country:</label>
+                    <label class="form-label" for="country">Country:</label>
                     <input class="form-control" type="text" name="country" id="country" placeholder="Enter Country" value="<%=listing.country%>">
                 </div>
                 <div class="mb-3">
-                    <button class="btn btn-dark" type="submit">Edit</button>
+                    <button class="btn btn-dark edit-btn" type="submit">Edit</button>
                 </div>
             </form>
         </div>

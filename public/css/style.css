@@ -32,6 +32,14 @@ a{
     color: #222222 !important;
 }
 
+.nav-link:hover{
+    border-bottom: 2px solid #222222;
+}
+
+.nav-link:active{
+    border-bottom: 2px solid #222222;
+}
+
 /* footer */
 .f-info-links > a{
     text-decoration: none;
@@ -79,8 +87,33 @@ a{
 
 .card{
     border: none;
-    margin-bottom: 2rem;
-    margin-left: 0.5rem;
+    display: block;
+    position: relative;
+    background-color: #f2f8f9;
+    border-radius: 10px;
+    text-decoration: none;
+    z-index: 2;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #f0f8fa, #eef5f6);
+}
+
+.card-img-overlay:before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: -16px;
+    right: -16px;
+    background: linear-gradient(135deg, #feffff4c, #eaeef74d);
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.5s ease-out;
+}
+
+.card-img-overlay:hover::before{
+    transform: scale(50);
 }
 
 .card-img-top{
@@ -97,18 +130,32 @@ a{
     font-weight: 400;
 }
 
-.card-img-overlay{
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.card-img-overlay:hover{
-    opacity: 1;
-    background-color: rgba(255 , 255 , 255 , 0.25);
-}
-
 .btn{
     background-color: #fe424d;
     border: none;
 }
 
+.show-img{
+    height: 30vh;
+}
+
+.go-corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background: linear-gradient(135deg, #f5f7f9, #f8fbff);
+    border-radius: 0 4px 0 32px;
+}
+
+  .go-arrow {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: black;
+    font-family: courier, sans;
+}

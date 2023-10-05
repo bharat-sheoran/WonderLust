@@ -7,6 +7,7 @@ const path = require("path");
 const ejs = require("ejs");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
 
 app.set("view engine" , "ejs");
 app.set("views" , path.join(__dirname , "views"));
@@ -33,7 +34,7 @@ app.get("/listing/new" , (req , res)=>{
 });
 
 //Insert Route
-app.post("/listing" , async (req ,res)=>{
+app.post("/listing" , wrapAsync(async (req ,res ,next)=>{
     const {title , description , image , price , location , country} = req.body;
     let listing = new Listing({
         title: title,
@@ -45,7 +46,7 @@ app.post("/listing" , async (req ,res)=>{
     });
     await listing.save();
     res.redirect("/listing");
-});
+}));
 
 //Show Route
 app.get("/listing/:id" , async (req , res)=>{
@@ -92,6 +93,10 @@ app.delete("/listing/:id" , async (req , res)=>{
 
 app.get("/" , (req , res)=>{
     res.send("Welcome to Wonderlust");
+});
+
+app.use((err , req , res , next)=>{
+    res.send("Something went Wrong");
 });
 
 app.listen(port , ()=>{

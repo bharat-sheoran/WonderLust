@@ -3,14 +3,16 @@
     <div class="row">
         <div class="col-8 offset-2">
             <h3>Edit Listing</h3>
-            <form method="post" action="/listing/<%=listing._id%>?_method=PUT">
+            <form class="needs-validation" method="post" action="/listing/<%=listing._id%>?_method=PUT" novalidate>
                 <div class="mb-3">
                     <label class="form-label" for="title">Title:</label>
-                    <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title" value="<%=listing.title%>">
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Enter Title" value="<%=listing.title%>" required>
+                    <div class="invalid-feedback">Title Required</div>
                 </div>   
                 <div class="mb-3">
                     <label class="form-label" for="description">Description:</label>
-                    <textarea class="form-control" type="text" name="description" id="description" placeholder="Enter Description"><%=listing.description%></textarea>
+                    <textarea class="form-control" type="text" name="description" id="description" placeholder="Enter Description" required><%=listing.description%></textarea>
+                    <div class="invalid-feedback">Description Required</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image URL:</label>
@@ -18,15 +20,18 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="price">Price:</label>
-                    <input class="form-control" type="number" name="price" id="price" placeholder="Enter Price" value="<%=listing.price%>">
+                    <input class="form-control" type="number" name="price" id="price" placeholder="Enter Price" value="<%=listing.price%>" required>
+                    <div class="invalid-feedback">Price Required</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Location:</label>
-                    <input class="form-control" type="text" name="location" id="location" placeholder="Enter Location" value="<%=listing.location%>">
+                    <input class="form-control" type="text" name="location" id="location" placeholder="Enter Location" value="<%=listing.location%>" required>
+                    <div class="invalid-feedback">location Required</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="country">Country:</label>
-                    <input class="form-control" type="text" name="country" id="country" placeholder="Enter Country" value="<%=listing.country%>">
+                    <input class="form-control" type="text" name="country" id="country" placeholder="Enter Country" value="<%=listing.country%>" required>
+                    <div class="invalid-feedback">Country Required</div>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-dark edit-btn" type="submit">Edit</button>
@@ -34,4 +39,6 @@
             </form>
         </div>
     </div>
+
+    <script src="/js/script.js"></script>
 </body>

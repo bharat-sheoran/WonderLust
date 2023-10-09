@@ -4,30 +4,37 @@
         <div class="col-8 offset-2">
             <h2>Create a New Listing</h2>
             <br><br>
-            <form action="/listing" method="post">
+            <form class="needs-validation" action="/listing" method="post" novalidate>
                 <div class="mb-3">
                     <label for="title" class="form-label">Enter Title:</label>
-                    <input type="text" name="title" id="title" placeholder="Title" class="form-control">
+                    <input type="text" name="listing[title]" id="title" placeholder="Title" class="form-control" required>
+                    <div class="valid-feedback">Looks Good!</div>
+                    <div class="invalid-feedback">Title Required</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Enter Description:</label>
-                    <textarea class="form-control" type="text" name="description" id="description" placeholder="Description"></textarea>
+                    <textarea class="form-control" type="text" name="listing[description]" id="description" placeholder="Description" required></textarea>
+                    <div class="invalid-feedback">Description Required</div>
+                    <div class="valid-feedback">Description describes your Product</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Enter Image URL:</label>
-                    <input class="form-control" type="text" name="image" id="image" placeholder="Image URL/Link">
+                    <input class="form-control" type="text" name="listing[image]" id="image" placeholder="Image URL/Link">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="price">Enter Price:</label>
-                    <input class="form-control" type="number" name="price" id="price" placeholder="Price">
+                    <input class="form-control" type="text" name="listing[price]" id="price" placeholder="Price" required aria-valuemin="0">
+                    <div class="invalid-feedback">Price Required</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location">Enter Location:</label>
-                    <input class="form-control" type="text" name="location" id="location" placeholder="Location">
+                    <input class="form-control" type="text" name="listing[location]" id="location" placeholder="Location" required>
+                    <div class="invalid-feedback">Location Required</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="country">Enter Country:</label>
-                    <input class="form-control" type="text" name="country" id="country" placeholder="Country">
+                    <input class="form-control" type="text" name="listing[country]" id="country" placeholder="Country" required>
+                    <div class="invalid-feedback">Country Required</div>
                 </div>
                 <br><br>
                 <div class="mb-3">
@@ -36,4 +43,5 @@
             </form>
         </div>
     </div>
+    <script src="/js/script.js"></script>
 </body>

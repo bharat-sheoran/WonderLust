@@ -1,24 +1,47 @@
 <%layout("layouts/boilerplate.ejs")%>
 <body>
     <div class="row">
-        <div class="col-8 offset-2">
-            <h3>Listing Details</h3>
+        <div class="col-md-8 offset-md-2">
+            <h3><%=listing.title%></h3>
         </div>
-            <div class="card col-6 offset-2">
-                <img src="<%=listing.image%>" class="card-img-top show-img" alt="listing Image">
-                <div class="card-body">
-                    <h5 class="card-title"><%=listing.title%></h5>
-                    <h6 class="card-title">&#8377;<%=listing.price.toLocaleString("en-IN")%></h6>
-                    <p class="card-text"><%=listing.description%></p>
-                    <p class="card-text">Location: <%=listing.location%></p>
-                    <p class="card-text">Country: <%=listing.country%></p>
-                    <form action="/listing/<%=listing._id%>/edit">
-                        <button class="btn btn-dark" type="submit">Edit</button>
-                    </form>
-                    <form action="/listing/<%=listing._id%>?_method=DELETE" method="post">
-                        <button class="btn btn-dark" type="submit">Delete</button>
-                    </form>
-                </div>
+        <div class="card col-md-6 offset-md-2">
+            <img src="<%=listing.image%>" class="card-img-top show-img" alt="listing Image">
+            <div class="card-body">
+                <h6 class="card-title mt-3">&#8377;<%=listing.price.toLocaleString("en-IN")%></h6>
+                <p class="card-text"><%=listing.description%></p>
+                <p class="card-text">Location: <%=listing.location%></p>
+                <p class="card-text">Country: <%=listing.country%></p>
+                <form action="/listing/<%=listing._id%>/edit">
+                    <button class="btn btn-dark" type="submit">Edit</button>
+                </form>
+                <form action="/listing/<%=listing._id%>?_method=DELETE" method="post">
+                    <button class="btn btn-dark" type="submit">Delete</button>
+                </form>
             </div>
+        </div>
+        <div class="col-md-6 offset-md-2">
+            <h2 class="mt-5">Leave a Review</h2>
+            <form class="needs-validation" action="/listing/<%=listing._id%>/review" method="post" novalidate>
+                <div class="rating">
+                    <input class="form-check-input" type="radio" name="review[rating]" id="rating1" value="1">
+                    <label class="form-check-label" for="rating1">1</label>
+                    <input class="form-check-input" type="radio" name="review[rating]" id="rating2" value="2">
+                    <label class="form-check-label" for="rating2">2</label>
+                    <input class="form-check-input" type="radio" name="review[rating]" id="rating3" value="3">
+                    <label class="form-check-label" for="rating3">3</label>
+                    <input class="form-check-input" type="radio" name="review[rating]" id="rating4" value="4">
+                    <label class="form-check-label" for="rating4">4</label>
+                    <input class="form-check-input" checked type="radio" name="review[rating]" id="rating5" value="5">
+                    <label class="form-check-label" for="rating5">5</label>
+                </div>
+                <div class="comment">
+                    <label class="mt-3" for="comment">Comment: </label>
+                    <textarea class="form-control" name="review[comment]" id="comment" cols="30" rows="3" placeholder="Review" required></textarea>
+                    <div class="valid-feedback">Looks Good!</div>
+                    <div class="invalid-feedback">Review is Mandatory</div>
+                </div>
+                <button class="btn btn-dark mt-3" type="submit">Post Review</button>
+            </form>
+        </div>
     </div>
 </body>

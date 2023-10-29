@@ -5,6 +5,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const listingSchema = require("../schema.js");
 const ExpressError = require("../utils/ExpressError.js");
 const Listing = require("../models/listing.js");
+const {isLoggedIn} = require("../middleware.js");
 
 const validateListing = (req , resp , next)=>{
     const {error} = listingSchema.validate(req.body);
@@ -22,12 +23,12 @@ router.get("/" ,wrapAsync(async (req , res)=>{
 }));
 
 //New Route
-router.get("/new" , (req , res)=>{
+router.get("/new", isLoggedIn , (req , res)=>{
     res.render("listings/new.ejs");
 });
 
 //Insert Route
-router.post("/" , wrapAsync(async (req ,res ,next)=>{
+router.post("/", isLoggedIn , wrapAsync(async (req ,res ,next)=>{
     await new Listing(req.body.listing).save();
     req.flash("success" , "New Post Created Successfully");
     res.redirect("/listing");
@@ -37,18 +38,26 @@ router.post("/" , wrapAsync(async (req ,res ,next)=>{
 router.get("/:id" , wrapAsync(async (req , res)=>{
     const {id} = req.params;
     const listing = await Listing.findById(id).populate("reviews");
+    if(!listing){
+        req.flash("error" , "The Post you're trying to reach does'nt exist");
+        res.redirect("/listing");
+    }
     res.render("listings/show.ejs" , {listing});
 }));
 
 //Edit Route
-router.get("/:id/edit" , async (req , res)=>{
+router.get("/:id/edit", isLoggedIn , async (req , res)=>{
     let {id} = req.params;
     const listing = await Listing.findById(id);
+    if(!listing){
+        req.flash("error" , "The Post you're trying to reach does'nt exist");
+        res.redirect("/listing");
+    }
     res.render("listings/edit.ejs" , {listing});
 });
 
 //Update Route
-router.put("/:id" , wrapAsync(async (req , res)=>{
+router.put("/:id", isLoggedIn , wrapAsync(async (req , res)=>{
     let {id} = req.params;
     await Listing.findByIdAndUpdate(id , {...req.body});
     req.flash("success" , "Post Edited Successfully");
@@ -56,7 +65,7 @@ router.put("/:id" , wrapAsync(async (req , res)=>{
 }));
 
 //Delete Route
-router.delete("/:id" , wrapAsync(async (req , res)=>{
+router.delete("/:id", isLoggedIn , wrapAsync(async (req , res)=>{
     let {id} = req.params;
     await Listing.findByIdAndDelete(id);
     req.flash("success" , "Post Deleted Successfully");

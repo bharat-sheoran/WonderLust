@@ -1,12 +1,17 @@
 <%layout("layouts/boilerplate.ejs")%>
 <body>
+    <script>
+        const mapToken = "<%=process.env.MAP_TOKEN%>";
+        const coordinates = <%-JSON.stringify(listing.geometry.coordinates)%>;
+        const listingLocation = "<%=listing.location%>"
+    </script>
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <h3><%=listing.title%></h3>
             <i><%=listing.owner.username%></i>
         </div>
         <div class="card col-md-6 offset-md-2 listing-card">
-            <img src="<%=listing.image%>" class="card-img-top show-img" alt="listing Image">
+            <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing Image">
             <div class="card-body">
                 <h6 class="card-title mt-3">&#8377;<%=listing.price.toLocaleString("en-IN")%></h6>
                 <p class="card-text"><%=listing.description%></p>
@@ -27,18 +32,21 @@
             <%if(currUser){%>
                 <h2 class="mt-5">Leave a Review</h2>
                 <form class="needs-validation" action="/listing/<%=listing._id%>/review" method="post" novalidate>
-                    <div class="rating">
-                        <input class="form-check-input" type="radio" name="review[rating]" id="rating1" value="1">
-                        <label class="form-check-label" for="rating1">1</label>
-                        <input class="form-check-input" type="radio" name="review[rating]" id="rating2" value="2">
-                        <label class="form-check-label" for="rating2">2</label>
-                        <input class="form-check-input" type="radio" name="review[rating]" id="rating3" value="3">
-                        <label class="form-check-label" for="rating3">3</label>
-                        <input class="form-check-input" type="radio" name="review[rating]" id="rating4" value="4">
-                        <label class="form-check-label" for="rating4">4</label>
-                        <input class="form-check-input" checked type="radio" name="review[rating]" id="rating5" value="5">
-                        <label class="form-check-label" for="rating5">5</label>
-                    </div>
+                    <fieldset class="starability-grow">
+                        <legend>Rating:</legend>
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
+
                     <div class="comment">
                         <label class="mt-3" for="comment">Comment: </label>
                         <textarea class="form-control" name="review[comment]" id="comment" cols="30" rows="3" placeholder="Review" required></textarea>
@@ -61,12 +69,19 @@
                                     </form>
                                 
                             </div>
+                            <p class="starability-result" data-rating="<%=rate.rating%>">
+                                Rated: <%=rate.rating%> stars
+                              </p>
                             <p class="card-text"><%=rate.comment%></p>
-                            <p class="card-text"><%=rate.rating%> Star</p>
                         </div>
                     </div>
                 <%}%>
             </div>
         </div>
+        <div class="col-md-6 offset-md-2">
+            <h3>Where you'll be</h3>
+            <div id="map"></div>
+        </div>
     </div>
+    <script src="/js/map.js"></script>
 </body>

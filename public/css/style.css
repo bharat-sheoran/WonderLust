@@ -85,7 +85,7 @@ a{
     text-decoration: underline
 }
 
-.card{
+.listing-card{
     border: none;
     display: block;
     position: relative;
@@ -159,3 +159,69 @@ a{
     color: black;
     font-family: courier, sans;
 }
+
+.review-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rev-btn{
+    border: none;
+    background-color: white;
+    color: white;
+    transition: 0.5s;
+}
+
+.review-card:hover .rev-btn{
+    color: black;
+}
+
+#map { 
+    height: 400px;
+    width: 80vh;
+}
+
+.add-button{
+    text-align: center;
+    width: 3rem;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    border: none;
+    outline: 2px solid #2c9caf;
+    background-color: transparent;
+    color: white;
+    transition: all 1000ms;
+    overflow: hidden;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+    outline: 2px solid #70bdca;
+    box-shadow: 4px 5px 17px -4px #268391;
+    border-bottom: none;
+}
+
+.add-button::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #2c9caf;
+    transform: skewX(45deg);
+    z-index: -1;
+    transition: width 1000ms;
+}
+
+.add-button:hover::before {
+    width: 250%;
+}
+  

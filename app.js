@@ -31,7 +31,7 @@ const db_URL = process.env.ATLASDB_URL;
 const store = mongoStore.create({
     mongoUrl: db_URL,
     crypto: {
-        secret:"mysupersecretcode"
+        secret:process.env.SECRET
     },
     touchAfter: 24*3600
 })
@@ -42,7 +42,7 @@ store.on("error" , ()=>{
 
 const sessionOptions = {
     store,
-    secret: "mysupersecretcode",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -60,7 +60,6 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// const mongo_URL = "mongodb://127.0.0.1:27017/wonderlust";
 
 async function main(){
     await mongoose.connect(db_URL);

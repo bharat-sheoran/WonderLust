@@ -1,4 +1,7 @@
 {
+  "engines":{
+    "node": "16.16.0"
+  },
   "name": "wonderlust",
   "version": "1.0.0",
   "description": "Travelling Made Easy",

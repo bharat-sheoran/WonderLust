@@ -18,6 +18,7 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
+const mongoStore = require("connect-mongo");
 
 app.set("view engine" , "ejs");
 app.set("views" , path.join(__dirname , "views"));
@@ -26,7 +27,21 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.engine("ejs" , ejsMate);
 
+const db_URL = process.env.ATLASDB_URL;
+const store = mongoStore.create({
+    mongoUrl: db_URL,
+    crypto: {
+        secret:"mysupersecretcode"
+    },
+    touchAfter: 24*3600
+})
+
+store.on("error" , ()=>{
+    console.log("ERROR IN MONGO SESSION STORE", err);
+})
+
 const sessionOptions = {
+    store,
     secret: "mysupersecretcode",
     resave: false,
     saveUninitialized: true,
@@ -45,8 +60,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// const mongo_URL = "mongodb://127.0.0.1:27017/wonderlust";
+
 async function main(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/wonderlust");
+    await mongoose.connect(db_URL);
 }
 
 main().then(()=>{console.log("Connection to Database is Successfull")}).catch(()=>{console.log("Error in connecting Database")});

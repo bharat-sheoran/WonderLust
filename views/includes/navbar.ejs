@@ -1,3 +1,14 @@
+<style>
+  .btn-search{
+    color: white;
+    border-radius: 25px;
+  }
+
+  .input-search{
+    border-radius: 25px;
+  }
+</style>
+
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
@@ -7,6 +18,12 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link" href="/listing">Explore</a>
+        </div>
+        <div class="navbar-nav ms-auto mt-3">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2 input-search" type="search" placeholder="Search Destination" aria-label="Search">
+            <button class="btn btn-search btn-dark" type="submit">Search</button>
+          </form>
         </div>
         <div class="navbar-nav ms-auto">
           <a class="nav-link add-button" href="/listing/new"><i class="fa-solid fa-plus"></i></a>

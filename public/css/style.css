@@ -190,7 +190,7 @@ a{
     right: 2rem;
     border: none;
     outline: 2px solid #2c9caf;
-    background-color: transparent;
+    background-color: white;
     color: white;
     transition: all 1000ms;
     overflow: hidden;
